@@ -23,10 +23,23 @@
         (push tail arg)
         (convert-string arg nil result)))))
 
-
 (defun comparison (a b order-list)
   (let ((a-place nil)(b-place nil))
-    (print a)))
+    (dotimes (i 3 nil)
+      (setq a-place (search-place a i order-list))
+      (setq b-place (search-place b i order-list))
+      (cond
+        ((equal a-place nil)
+         (if (equal b-place nil)
+             (print "両方共nil")
+             (print "bの勝ち")))
+        ((equal b-place nil)
+         (print "aの勝ち"))
+        (t
+          (cond
+            ((= a-place b-place)(print "引き分け"))
+            ((> a-place b-place)(print "bの勝ち"))
+            ((< a-place b-place)(print "aの勝ち"))))))))
 
 (defun search-place (word num order-list)
   (dotimes (i (length order-list) nil)
@@ -37,11 +50,15 @@
           (return-from search-place place))))
   (return-from search-place nil))
 
+
 ; (myFunc '(文文文　字　字列a bb))
 ; (myFunc '(文文文　字　字 列 a bb))
 
-; (comparison "アルファベット" "いろは" nil)
+; (comparison "アルファベット" "いろは" (list *hiragana* *katakana*))
+; (comparison "ルルル" "いろは" (list *hiragana* *katakana*))
+; (comparison "ルアル" "いろは" (list *hiragana* *katakana*))
+(comparison "あおう" "いイウ" (list *hiragana* *katakana*))
 
 ; (print (search-place "いろは" 0 (list *hiragana* *katakana*)))
-(print (search-place "アルファベット" 0 (list *hiragana* *katakana*)))
+; (print (search-place "アルファベット" 0 (list *hiragana* *katakana*)))
 
