@@ -25,21 +25,25 @@
 
 (defun comparison (a b order-list)
   (let ((a-place nil)(b-place nil))
-    (dotimes (i 3 nil)
+    (dotimes (i (length a) nil)
+      (if (= i (length b))(return-from comparison (list b a)))  ; bのほうが短いケース
       (setq a-place (search-place a i order-list))
       (setq b-place (search-place b i order-list))
       (cond
         ((equal a-place nil)
-         (if (equal b-place nil)
-             (print "両方共nil")
-             (print "bの勝ち")))
+         (if (not (equal b-place nil))
+             (return-from comparison (list b a))))  ; bが勝利
+               ; 両方共nilのためループ続行
         ((equal b-place nil)
-         (print "aの勝ち"))
+         (return-from comparison (list a b)))  ; aが勝利
         (t
           (cond
-            ((= a-place b-place)(print "引き分け"))
-            ((> a-place b-place)(print "bの勝ち"))
-            ((< a-place b-place)(print "aの勝ち"))))))))
+            ((> a-place b-place)(return-from comparison (list b a))) ; bが勝利
+            ((< a-place b-place)(return-from comparison (list a b))))))) ; aが勝利
+              ; 引き分けのためループ続行
+    (if (= (length a)(length b))
+        (return-from comparison (list a b))  ; 引き分けで終了
+        (return-from comparison (list a b))))) ; aのほうが短いケース
 
 (defun search-place (word num order-list)
   (dotimes (i (length order-list) nil)
@@ -54,10 +58,14 @@
 ; (myFunc '(文文文　字　字列a bb))
 ; (myFunc '(文文文　字　字 列 a bb))
 
-; (comparison "アルファベット" "いろは" (list *hiragana* *katakana*))
-; (comparison "ルルル" "いろは" (list *hiragana* *katakana*))
-; (comparison "ルアル" "いろは" (list *hiragana* *katakana*))
-(comparison "あおう" "いイウ" (list *hiragana* *katakana*))
+; (print (comparison "アルファベット" "いろは" (list *hiragana* *katakana*)))
+; (print (comparison "ルルル" "いろは" (list *hiragana* *katakana*)))
+(print (comparison "ルアル" "いろは" (list *hiragana* *katakana*)))
+(print (comparison "ルアル" "ルアい" (list *hiragana* *katakana*)))
+(print (comparison "あおう" "いイウ" (list *hiragana* *katakana*)))
+; (print (comparison "あいうえお" "あいうえお" (list *hiragana* *katakana*)))
+(print (comparison "あいうえお" "あいうえあ" (list *hiragana* *katakana*)))
+; (comparison "あ" "いイウ" (list *hiragana* *katakana*))
 
 ; (print (search-place "いろは" 0 (list *hiragana* *katakana*)))
 ; (print (search-place "アルファベット" 0 (list *hiragana* *katakana*)))
