@@ -23,6 +23,14 @@
         (push tail arg)
         (convert-string arg nil result)))))
 
+; (defun selection-sort (target order-list result))
+
+(defun select-first (target order-list)
+  (let ((winner (car target)))
+    (dotimes (i (length target) nil)
+      (setq winner (car (comparison winner (nth i target) order-list))))
+    (return-from select-first winner)))
+
 (defun comparison (a b order-list)
   (let ((a-place nil)(b-place nil))
     (dotimes (i (length a) nil)
@@ -60,12 +68,15 @@
 
 ; (print (comparison "アルファベット" "いろは" (list *hiragana* *katakana*)))
 ; (print (comparison "ルルル" "いろは" (list *hiragana* *katakana*)))
-(print (comparison "ルアル" "いろは" (list *hiragana* *katakana*)))
-(print (comparison "ルアル" "ルアい" (list *hiragana* *katakana*)))
-(print (comparison "あおう" "いイウ" (list *hiragana* *katakana*)))
+; (print (comparison "ルアル" "いろは" (list *hiragana* *katakana*)))
+; (print (comparison "ルアル" "ルアい" (list *hiragana* *katakana*)))
+; (print (comparison "あおう" "いイウ" (list *hiragana* *katakana*)))
 ; (print (comparison "あいうえお" "あいうえお" (list *hiragana* *katakana*)))
-(print (comparison "あいうえお" "あいうえあ" (list *hiragana* *katakana*)))
+; (print (comparison "あいうえお" "あいうえあ" (list *hiragana* *katakana*)))
 ; (comparison "あ" "いイウ" (list *hiragana* *katakana*))
+
+(print (select-first (list "あいうえお" "あいうえあ") (list *hiragana* *katakana*)))
+(print (select-first (list "えお" "う" "いうあ" "いあえ") (list *hiragana* *katakana*)))
 
 ; (print (search-place "いろは" 0 (list *hiragana* *katakana*)))
 ; (print (search-place "アルファベット" 0 (list *hiragana* *katakana*)))
