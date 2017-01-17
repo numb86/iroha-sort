@@ -1,9 +1,10 @@
 (defparameter *hiragana* "あいうえお")
 (defparameter *katakana* "アイウエオ")
 
-(defun myFunc (arg)
+(defun iroha (arg)
   (setq arg (convert-string arg nil nil))
-  (print arg))
+  (setq arg (selection-sort arg (list *hiragana* *katakana*) nil))
+  (show-string arg))
 
 (defun convert-string (arg target result)
   (setq target (string (first arg)))
@@ -22,6 +23,15 @@
         (setq arg (cdr arg))
         (push tail arg)
         (convert-string arg nil result)))))
+
+(defun show-string (arg)
+  (cond
+    ((equal arg nil)
+     (return-from show-string nil))
+    (t
+      (format t (car arg))
+      (format t "~%")
+      (show-string (cdr arg)))))
 
 (defun selection-sort (target order-list result)
   (push (select-first target order-list) result)
@@ -68,8 +78,11 @@
   (return-from search-place nil))
 
 
-; (myFunc '(文文文　字　字列a bb))
-; (myFunc '(文文文　字　字 列 a bb))
+; (iroha '(いえ　ううお　あい　あえ))
+; (iroha '(うう　ううか　うか　おAあ　おAい　おA　S))
+(iroha '(ええ　うう　うお　い　あま　あいた))
+
+; (show-string (list "あいた" "あま" "い" "うう" "うお" "ええ"))
 
 ; (print (comparison "アルファベット" "いろは" (list *hiragana* *katakana*)))
 ; (print (comparison "ルルル" "いろは" (list *hiragana* *katakana*)))
@@ -84,7 +97,7 @@
 ; (print (select-first (list "えお" "う" "いうあ" "いあえ") (list *hiragana* *katakana*)))
 
 ; (print (selection-sort (list "えお" "う" "いうあ" "いあえ") (list *hiragana* *katakana*) nil))
-(print (selection-sort (list "えおう" "ええ" "えお" "う" "あ" "あ") (list *hiragana* *katakana*) nil))
+; (print (selection-sort (list "えおう" "ええ" "えお" "う" "あ" "あ") (list *hiragana* *katakana*) nil))
 
 
 ; (print (search-place "いろは" 0 (list *hiragana* *katakana*)))
