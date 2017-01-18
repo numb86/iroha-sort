@@ -1,3 +1,13 @@
+(format t "(iroha '(単語　単語)) という形で入力してください。~%")
+(format t "~%")
+(format t "例~%")
+(format t "(iroha '(いしだ　はらだ　いいだ))~%")
+(format t "結果~%")
+(format t "いいだ~%")
+(format t "いしだ~%")
+(format t "はらだ~%")
+(format t "~%")
+
 (defparameter *hiragana* "あいうえお")
 (defparameter *katakana* "アイウエオ")
 
@@ -27,6 +37,7 @@
 (defun show-string (arg)
   (cond
     ((equal arg nil)
+     (format t "~%")
      (return-from show-string nil))
     (t
       (format t (car arg))
@@ -80,7 +91,7 @@
 
 ; (iroha '(いえ　ううお　あい　あえ))
 ; (iroha '(うう　ううか　うか　おAあ　おAい　おA　S))
-(iroha '(ええ　うう　うお　い　あま　あいた))
+; (iroha '(ええ　うう　うお　い　あま　あいた))
 
 ; (show-string (list "あいた" "あま" "い" "うう" "うお" "ええ"))
 
