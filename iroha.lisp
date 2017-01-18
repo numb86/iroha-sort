@@ -8,8 +8,8 @@
 (format t "はらだ~%")
 (format t "~%")
 
-(defparameter *hiragana* "あいうえお")
-(defparameter *katakana* "アイウエオ")
+(defparameter *hiragana* "いぃろはばぱにほぼぼへべぺとどちぢりぬるをわかがよただれそぞつづっねならむうぅのおぉくぐやまけげふぶぷこごえぇてであぁさざきぎゆめみしじひびぴもせぜすず")
+(defparameter *katakana* "イィロハバパニホボボヘベペトドチヂリヌルヲワカガヨタダレソゾツヅッネナラムウゥノオォクグヤマケゲフブプコゴエェテデアァサザキギユメミシジヒビピモセゼスズ")
 
 (defun iroha (arg)
   (setq arg (convert-string arg nil nil))
@@ -37,11 +37,11 @@
 (defun show-string (arg)
   (cond
     ((equal arg nil)
-     (format t "~%")
+     (format t "~%~%")
      (return-from show-string nil))
     (t
-      (format t (car arg))
       (format t "~%")
+      (format t (car arg))
       (show-string (cdr arg)))))
 
 (defun selection-sort (target order-list result)
