@@ -87,30 +87,3 @@
       (if place
           (return-from search-place place))))
   (return-from search-place nil))
-
-
-; (iroha '(いえ　ううお　あい　あえ))
-; (iroha '(うう　ううか　うか　おAあ　おAい　おA　S))
-; (iroha '(ええ　うう　うお　い　あま　あいた))
-
-; (show-string (list "あいた" "あま" "い" "うう" "うお" "ええ"))
-
-; (print (comparison "アルファベット" "いろは" (list *hiragana* *katakana*)))
-; (print (comparison "ルルル" "いろは" (list *hiragana* *katakana*)))
-; (print (comparison "ルアル" "いろは" (list *hiragana* *katakana*)))
-; (print (comparison "ルアル" "ルアい" (list *hiragana* *katakana*)))
-; (print (comparison "あおう" "いイウ" (list *hiragana* *katakana*)))
-; (print (comparison "あいうえお" "あいうえお" (list *hiragana* *katakana*)))
-; (print (comparison "あいうえお" "あいうえあ" (list *hiragana* *katakana*)))
-; (comparison "あ" "いイウ" (list *hiragana* *katakana*))
-
-; (print (select-first (list "あいうえお" "あいうえあ") (list *hiragana* *katakana*)))
-; (print (select-first (list "えお" "う" "いうあ" "いあえ") (list *hiragana* *katakana*)))
-
-; (print (selection-sort (list "えお" "う" "いうあ" "いあえ") (list *hiragana* *katakana*) nil))
-; (print (selection-sort (list "えおう" "ええ" "えお" "う" "あ" "あ") (list *hiragana* *katakana*) nil))
-
-
-; (print (search-place "いろは" 0 (list *hiragana* *katakana*)))
-; (print (search-place "アルファベット" 0 (list *hiragana* *katakana*)))
-
