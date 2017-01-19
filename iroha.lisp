@@ -1,3 +1,4 @@
+(format t "~%~%")
 (format t "(iroha '(単語　単語)) という形で入力してください。~%")
 (format t "~%")
 (format t "例~%")
