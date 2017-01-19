@@ -25,4 +25,7 @@
 (test "search-place-1" (search-place "えおあいう" 0 (list *hiragana* *katakana*)) 3)
 (test "search-place-1" (search-place "えおあいう" 4 (list *hiragana* *katakana*)) 2)
 
+(defparameter *hiragana* "いぃろはばぱにほぼぼへべぺとどちぢりぬるをわかがよただれそぞつづっねならむうぅのおぉくぐやまけげふぶぷこごえぇてであぁさざきぎゆめみしじひびぴもせぜすず")
+(defparameter *katakana* "イィロハバパニホボボヘベペトドチヂリヌルヲワカガヨタダレソゾツヅッネナラムウゥノオォクグヤマケゲフブプコゴエェテデアァサザキギユメミシジヒビピモセゼスズ")
+
 (format t "~%")
